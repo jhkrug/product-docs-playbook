@@ -1,13 +1,13 @@
 site:
   title: Rancher product documentation
-  start_page: latest@rancher-manager:en:about-rancher/what-is-rancher.adoc
+  start_page: v2.12@rancher-manager:en:about-rancher/what-is-rancher.adoc
   url: https://documentation.suse.com/cloudnative
 
 content:
   sources:
     - url: https://github.com/rancher/fleet-product-docs.git # en
       branches: [main]
-      start_paths: [versions/v0.12, versions/v0.11, versions/v0.10, versions/v0.9]
+      start_paths: [versions/v0.13,versions/v0.12, versions/v0.11, versions/v0.10, versions/v0.9]
     - url: https://github.com/rancher/neuvector-product-docs.git # en
       branches: [main]
       start_paths: [docs/*]
@@ -17,27 +17,30 @@ content:
     - url: https://github.com/rancher/turtles-product-docs.git # en
       branches: [main]
       start_paths: [versions/latest, versions/v0.24, versions/v0.23, versions/v0.22, versions/v0.21, versions/v0.20, versions/v0.19, versions/v0.18, versions/v0.17, versions/v0.16, versions/v0.15, versions/v0.14, versions/v0.13, versions/v0.12, versions/v0.11]
+    - url: https://github.com/rancher/k3k-product-docs # en
+      branches: [main]
+      start_paths: [versions/latest]
     - url: https://github.com/rancher/kubewarden-product-docs.git # en
       branches: [main]
       start_paths: [shared, docs/version-*]
     - url: https://github.com/rancher/stackstate-product-docs.git # en
       branches: [main]
-      start_paths: [shared, docs/latest, docs/version-*]
+      start_paths: [shared, docs/latest]
     - url: https://github.com/rancher/longhorn-product-docs.git # en
       branches: [main]
-      start_paths: [shared, docs/version-1.8, docs/version-1.9, docs/version-1.10]
+      start_paths: [shared, docs/latest, docs/version-1.8, docs/version-1.9, docs/version-1.10, docs/version-1.11]
     - url: https://github.com/rancher/harvester-product-docs # en
       branches: [main]
-      start_paths: [versions/v1.6, versions/v1.5, versions/v1.4, versions/v1.3]
+      start_paths: [versions/v1.7, versions/v1.6, versions/v1.5, versions/v1.4]
     - url: https://github.com/rancher/rancher-product-docs # en ,zh
       branches: [main]
-      start_paths: [shared, versions/latest, versions/v2.12, versions/v2.11, versions/v2.10, versions/v2.9, versions/v2.8]
+      start_paths: [shared, versions/v2.12, versions/v2.11, versions/v2.10, versions/v2.9, versions/v2.8]
     - url: https://github.com/rancher/rke2-product-docs # en, zh
       branches: [main]
       start_path: versions/latest
     - url: https://github.com/rancher/k3s-product-docs # en, ja, ko, zh
       branches: [main]
-      start_path: versions/latest
+      start_path: docs/latest
 ui:
   bundle:
     url: https://github.com/SUSEdoc/dsc-style-bundle/blob/main/default-ui/ui-bundle.zip?raw=true
@@ -53,22 +56,6 @@ asciidoc:
     page-pagination: ''
     tabs-sync-option: ''
     kw-build-type: 'product' # One of 'community' or 'product'
-    kw-product-name: 'SUSE® Rancher Prime: Admission Policy Manager (Kubewarden)'
-    kw-community-name: 'Kubewarden'
-    page-project-data: [
-      {'title': 'Policy Manager', 'url-part': 'policy-manager', 'url': 'https://documentation.suse.com/cloudnative/policy-manager'},
-      {'title': 'Cluster API', 'url-part': 'cluster-api', 'url': 'https://documentation.suse.com/cloudnative/cluster-api'},
-      {'title': 'Continuous Delivery', 'url-part': 'continuous-delivery', 'url': 'https://documentation.suse.com/cloudnative/continuous-delivery'},
-      {'title': 'K3s', 'url-part': 'k3s', 'url': 'https://documentation.suse.com/cloudnative/k3s'},
-      {'title': 'OS Manager', 'url-part': 'os-manager', 'url': 'https://documentation.suse.com/cloudnative/os-manager'},
-      {'title': 'Policy Manager', 'url-part': 'policy-manager', 'url': 'https://documentation.suse.com/cloudnative/policy-manager'},
-      {'title': 'RKE2', 'url-part': 'rke2', 'url': 'https://documentation.suse.com/cloudnative/rke2'},
-      {'title': 'SUSE Observability', 'url-part': 'suse-observability', 'url': 'https://documentation.suse.com/cloudnative/suse-observability'},
-      {'title': 'SUSE Rancher Manager', 'url-part': 'rancher-manager', 'url': 'https://documentation.suse.com/cloudnative/rancher-manager'},
-      {'title': 'SUSE Security', 'url-part': 'security', 'url': 'https://documentation.suse.com/cloudnative/security'},
-      {'title': 'SUSE Storage', 'url-part': 'storage', 'url': 'https://documentation.suse.com/cloudnative/storage'},
-      {'title': 'SUSE Virtualization', 'url-part': 'virtualization', 'url': 'https://documentation.suse.com/cloudnative/virtualization'},
-    ]
   extensions:
     - asciidoctor-kroki
     - '@asciidoctor/tabs'
@@ -83,6 +70,8 @@ antora:
     mermaid_initialize_options: # <4>
   - require: ./product-docs-common/extensions/dynamic-loading-attributes/load-global-site-attributes.js
     attributefile: ./product-docs-common/global-attributes.yml
+    enabled: true
+  - require: ./product-docs-common/extensions/versions-latest-prerelease/vlp.js
     enabled: true
 
 output:
