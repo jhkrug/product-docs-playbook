@@ -1,10 +1,8 @@
 ---
 root_level: 0
 
-component_versions: '*'
-
-# component_version_filter:
-#   names: [shared, docs/version-1.29, docs/version-1.28]
+component_version_filter:
+  names: '**'  # just the latest version for each component
 
 asciidoc:
   attributes:
@@ -14,10 +12,11 @@ asciidoc:
     toc: ''
     toclevels: 3
     text-align: left
-    source-highlighter: rouge
+    source-highlighter: rogue
     pdf-theme: ../../doc-suse-com/dsc-style-bundle/supplemental-files/rancher/pdf/pdf-a4-theme.yml
     pdf-fontsdir: ../../doc-suse-com/dsc-style-bundle/supplemental-files/rancher/pdf/fonts/SUSE
 
 build:
+  dir: build/pdfs
   command: |
     bundle exec asciidoctor-pdf -r asciidoctor-kroki --sourcemap --trace --theme ${pdf-theme} -a pdf-fontsdir=${pdf-fontsdir}
