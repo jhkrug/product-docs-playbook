@@ -1,8 +1,16 @@
 ---
 root_level: 0
 
+# 'component-name' = latest version
+# '*@component-name' = all versions
+# 'v1.2.3@component-name' = specific version
 component_version_filter:
-  names: '**'  # just the latest version for each component
+  names: [
+    'admission-controller',
+    '*@rancher-manager',
+    'v0.24@cluster-api',
+    '*@k3s'
+  ]
 
 asciidoc:
   attributes:
@@ -17,6 +25,8 @@ asciidoc:
     pdf-fontsdir: ../../doc-suse-com/dsc-style-bundle/supplemental-files/rancher/pdf/fonts/SUSE
 
 build:
-  dir: build/pdfs
+  dir: build/site/pdfs
+  publish: false
+  qualify_exports: true
   command: |
     bundle exec asciidoctor-pdf -r asciidoctor-kroki --sourcemap --trace --theme ${pdf-theme} -a pdf-fontsdir=${pdf-fontsdir}

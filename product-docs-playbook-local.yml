@@ -16,7 +16,7 @@ content:
       start_paths: [docs/*]
     - url: ../turtles-product-docs # en
       branches: [main]
-      start_paths: [versions/latest, versions/v0.24, versions/v0.23, versions/v0.22, versions/v0.21, versions/v0.20, versions/v0.19, versions/v0.18, versions/v0.17, versions/v0.16, versions/v0.15, versions/v0.14, versions/v0.13, versions/v0.12, versions/v0.11]
+      start_paths: [versions/v0.24, versions/v0.23, versions/v0.22, versions/v0.21, versions/v0.20, versions/v0.19, versions/v0.18, versions/v0.17, versions/v0.16, versions/v0.15, versions/v0.14, versions/v0.13, versions/v0.12, versions/v0.11]
     - url: ../k3k-product-docs # en
       branches: [HEAD]
       start_paths: [versions/latest]
@@ -28,7 +28,7 @@ content:
       start_paths: [shared, docs/latest]
     - url: ../longhorn-product-docs # en
       branches: [main]
-      start_paths: [shared, docs/latest, docs/version-1.8, docs/version-1.9, docs/version-1.10, docs/version-1.11]
+      start_paths: [shared, docs/version-1.8, docs/version-1.9, docs/version-1.10, docs/version-1.11]
     - url: ../harvester-product-docs # en
       branches: [main]
       start_paths: [versions/v1.7, versions/v1.6, versions/v1.5, versions/v1.4]
@@ -68,8 +68,10 @@ antora:
   - require: ./product-docs-common/extensions/dynamic-loading-attributes/load-global-site-attributes.js
     attributefile: ./product-docs-common/global-attributes.yml
     enabled: true
-  - require: ./product-docs-common/extensions/versions-latest-prerelease/vlp.js
+  - require: ../product-docs-common/extensions/versions-latest-prerelease/vlp.js
     enabled: true
 
 output:
   dir: build/site
+  destinations:
+    - provider: archive
